@@ -10,6 +10,7 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
         Scanner input = new Scanner(System.in);
         Map<String, Item> map = new HashMap<String, Item>();
         Item item = new Item("axe", 2);
@@ -20,12 +21,13 @@ public class Main {
         char charInputToClose = 'c';
 
         do{
-            String InputName;
-            System.out.println("Enter item name:");
+            String InputName = "";
+            System.out.print("Enter item name:");
             InputName = input.nextLine();
 
-            System.out.println("Enter item value: ");
-            int InputValue = input.nextInt();
+
+            System.out.print("Enter item value: ");
+            int InputValue = Integer.parseInt(input.nextLine()); // parse into int
 
 
             ItemToPut = new Item(InputName, InputValue);
@@ -33,21 +35,20 @@ public class Main {
             map.put(InputName, ItemToPut);
 
             System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
-            //System.out.println("Press C to Exit");
+            System.out.println("Press C to Exit");
 
-            //input.nextLine(); // clears the newline
-            //charInputToClose = input.next().charAt(0);
+            charInputToClose = input.nextLine().charAt(0);
 
 
-        } while (true);
+        } while (charInputToClose != 'c');
 
-        /*
+
         for (String key : map.keySet()) {
-            System.out.println("Key: " + key);
+            System.out.println("Item Name: " + key);
             System.out.println("Value: " + map.get(key).Value);
         }
 
-         */
+
 
 
 
