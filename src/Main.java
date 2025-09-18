@@ -1,3 +1,5 @@
+import com.sun.jdi.Value;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -12,19 +14,40 @@ public class Main {
         Map<String, Item> map = new HashMap<String, Item>();
         Item item = new Item("axe", 2);
 
-        map.put(item.name,item);
-        System.out.println(map.get("axe").name + " " + map.get("axe").Value);
+        boolean inputTrue = true;
+        Item ItemToPut;
 
-        System.out.print("Enter item name: ");
-        String InputName = input.nextLine();
+        char charInputToClose = 'c';
 
-        System.out.print("Enter item value: ");
-        int InputValue = input.nextInt();
+        do{
+            String InputName;
+            System.out.println("Enter item name:");
+            InputName = input.nextLine();
 
-        Item item1 = new Item(InputName, InputValue);
-        map.put(InputName, item1);
+            System.out.println("Enter item value: ");
+            int InputValue = input.nextInt();
 
-        System.out.println(map.get(InputName).name + " " + map.get(InputName).Value);
+
+            ItemToPut = new Item(InputName, InputValue);
+
+            map.put(InputName, ItemToPut);
+
+            System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
+            //System.out.println("Press C to Exit");
+
+            //input.nextLine(); // clears the newline
+            //charInputToClose = input.next().charAt(0);
+
+
+        } while (true);
+
+        /*
+        for (String key : map.keySet()) {
+            System.out.println("Key: " + key);
+            System.out.println("Value: " + map.get(key).Value);
+        }
+
+         */
 
 
 
