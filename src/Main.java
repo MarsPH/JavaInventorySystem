@@ -19,7 +19,7 @@ public class Main {
 
         Item ItemToPut;// temperory reference created to pass to Item later in the loop(for validation)
 
-        char charChoiceToClose = 'c';
+        char charChoiceToContinue = 'c';
 
         do {
             try {
@@ -51,18 +51,28 @@ public class Main {
                 continue;
             }
 
-            System.out.println("Press C to Exit");
-            char choice = input.nextLine().trim().toLowerCase().charAt(0);//gets the char input from the character
-            if (choice == charChoiceToClose) {//
+            System.out.println("Write C to Continue, Write other keys to quit");
+
+            String line = input.nextLine().trim().toLowerCase();
+            char choice = line.isEmpty() ? ' ' : line.charAt(0);
+
+            if (choice == charChoiceToContinue) {//
+                running = true;
+            }
+            else{
                 running = false;
             }
+
 
         } while (running);
 
 
+        System.out.println("Items:");
+        System.out.println("---------------------");
         for (String key : map.keySet()) {
             System.out.println("Item Name: " + key);
             System.out.println("Value: " + map.get(key).Value);
+            System.out.println("---------------------");
         }
 
 
