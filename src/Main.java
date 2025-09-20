@@ -10,37 +10,46 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
+        //scanner for the input
         Scanner input = new Scanner(System.in);
-        Map<String, Item> map = new HashMap<String, Item>();
-        Item item = new Item("axe", 2);
+        Map<String, Item> map = new HashMap<String, Item>();//key is the name of the item
+        Item item = new Item("axe", 2);// example of adding an item to the map
 
-        boolean inputTrue = true;
+        boolean running = true;
         Item ItemToPut;
 
-        char charInputToClose = 'c';
+        char charChoiceToClose = 'c';
 
-        do{
-            String InputName = "";
-            System.out.print("Enter item name:");
-            InputName = input.nextLine();
-
-
-            System.out.print("Enter item value: ");
-            int InputValue = Integer.parseInt(input.nextLine()); // parse into int
+        do {
+            try {
+                String InputName = "";
+                System.out.print("Enter item name:");
+                InputName = input.nextLine();
 
 
-            ItemToPut = new Item(InputName, InputValue);
+                System.out.print("Enter item value: ");
+                int InputValue = Integer.parseInt(input.nextLine()); // parse into int
 
-            map.put(InputName, ItemToPut);
 
-            System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
+                ItemToPut = new Item(InputName, InputValue);
+
+                map.put(InputName, ItemToPut);
+
+                System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
+
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
             System.out.println("Press C to Exit");
+            char choice = input.nextLine().trim().toLowerCase().charAt(0);
+            if (choice == charChoiceToClose) {
+                running = false;
+            }
 
-            charInputToClose = input.nextLine().charAt(0);
-
-
-        } while (charInputToClose != 'c');
+        } while (running);
 
 
         for (String key : map.keySet()) {
