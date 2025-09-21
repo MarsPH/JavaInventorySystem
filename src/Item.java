@@ -17,4 +17,11 @@ public class Item {
         this.Value = value;
     }
 
+    public String getName() {
+        return name;
+    }
+    public int getValue() {
+        return Value;
+    }
+
 }

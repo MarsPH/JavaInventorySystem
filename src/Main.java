@@ -110,9 +110,9 @@ public class Main {
         )
         {
 
-            pst.setString(1, InputName);
+            pst.setString(1, item.getName());
             pst.setString(2,"Weapon");
-            pst.setInt(3, InputValue);
+            pst.setInt(3, item.getValue());
             pst.executeUpdate();
             System.out.println("Connected to database!");
 
