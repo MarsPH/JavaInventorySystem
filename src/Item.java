@@ -2,8 +2,8 @@ public class Item {
 
     public String name;
     public int Value;
-    private int minValue = 0;
-    private int maxValue = 100;
+    private final int minValue = 0;
+    private final int maxValue = 100;
 
     public Item(String name, int value) throws IllegalArgumentException {
         if (name.isEmpty() || name.trim().isEmpty()) {
