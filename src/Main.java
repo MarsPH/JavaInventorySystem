@@ -5,10 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Main {
-    String url = "jdbc:mysql://localhost:3306/rpg_shop";
-    String user = "root";
-    String password = "1234";
-    String sql = "SELECT name, price FROM items;\n";
+
     public static void main(String[] args) {
 
         //scanner for the input
@@ -21,39 +18,14 @@ public class Main {
         char charChoiceToContinue = 'c';
 
         do {
+
                 Item item = Main.askUserForItem();
                 // adds the Item to the map, with the key of its name, so it can be accessed with its name
                 //map.put(InputName, ItemToPut);
-                try(Connection conn = DriverManager.getConnection(url, user, password);
-                    Statement st = conn.createStatement();
-                    ResultSet rs = st.executeQuery(sql);
-                    PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)");
-                    )
-                {
 
-                    pst.setString(1, InputName);
-                    pst.setString(2,"Weapon");
-                    pst.setInt(3, InputValue);
-                    pst.executeUpdate();
-                    System.out.println("Connected to database!");
 
-                    ResultSet rs1 = st.executeQuery("select * from items;");
-                    while (rs1.next()) {
-                        String name = rs1.getString("name"); // or column label like "name"
-                        String price = rs1.getString("price");
-                        System.out.print(name + " : " + price + "\n");
-                    }
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
 
-                System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
+            //System.out.println(map.get(InputName).name + " " + map.get(InputName).Value + " Added");
 
             System.out.println("Write C to Continue, Write other keys to quit");
 
@@ -122,6 +94,39 @@ public class Main {
         catch (InputMismatchException e) {
             System.out.println("Invalid input");
             return null;
+        }
+    }
+
+    public static void saveItemToDatabase(Item item){
+        String url = "jdbc:mysql://localhost:3306/rpg_shop";
+        String user = "root";
+        String password = "1234";
+        String sql = "SELECT name, price FROM items;\n";
+
+        try(Connection conn = DriverManager.getConnection(url, user, password);
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)");
+        )
+        {
+
+            pst.setString(1, InputName);
+            pst.setString(2,"Weapon");
+            pst.setInt(3, InputValue);
+            pst.executeUpdate();
+            System.out.println("Connected to database!");
+
+            ResultSet rs1 = st.executeQuery("select * from items;");
+            while (rs1.next()) {
+                String name = rs1.getString("name"); // or column label like "name"
+                String price = rs1.getString("price");
+                System.out.print(name + " : " + price + "\n");
+            }
+
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
