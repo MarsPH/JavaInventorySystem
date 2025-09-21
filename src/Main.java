@@ -10,16 +10,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //scanner for the input
+        //if any exception is run to, it will be set to false
         boolean running = true;
 
         while (running) {
 
-            Item item = Main.askUserForItem();
-            saveItemToDatabase(item);
-            running = askUserToContinue();
+            Item item = askUserForItem();// gets the input from the user to set data to the database + validation
+            saveItemToDatabase(item);// set the data from created item from input into the database
+            running = askUserToContinue();// asks if the user want to add another item
         }
-        printAllItems();
+        printAllItems();// after the inputs, it shows the table of items
 
     }
 
@@ -55,10 +55,10 @@ public class Main {
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)")
         ) {
-            pst.setString(1, item.getName());
-            pst.setString(2, "Weapon");
-            pst.setInt(3, item.getValue());
-            pst.executeUpdate();
+            pst.setString(1, item.getName()); //sets the first ? as the name of the item to == name
+            pst.setString(2, "Weapon");// On default sets this as category
+            pst.setInt(3, item.getValue());// sets the price of the item as the price
+            pst.executeUpdate();//runs the command
             System.out.println("Connected to database!");
 
         } catch (SQLException e) {
@@ -72,7 +72,7 @@ public class Main {
              ResultSet rs = st.executeQuery(sql)
         ) {
             while (rs.next()) {
-                String name = rs.getString("name"); // or column label like "name"
+                String name = rs.getString("name"); // or column label like "name" - USED Label
                 String price = rs.getString("price");
                 System.out.print(name + " : " + price + "\n");
             }
