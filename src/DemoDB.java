@@ -1,3 +1,4 @@
+/*
 import java.sql.*;
 public  class DemoDB {
         public static void main(String[] args) {
@@ -24,3 +25,4 @@ public  class DemoDB {
             }
         }
 }
+ */
