@@ -1,21 +1,16 @@
 
-import com.sun.jdi.Value;
-
 import java.sql.*;
 import java.util.*;
 
 public class Main {
-    private static String url = "jdbc:mysql://localhost:3306/rpg_shop";
-    private static String user = "root";
-    private static String password = "1234";
-    private static String sql = "SELECT name, price FROM items;\n";
+    private static final String url = "jdbc:mysql://localhost:3306/rpg_shop";
+    private static final String user = "root";
+    private static final String password = "1234";
+    private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
 
         //scanner for the input
-        //Map<String, Item> map = new HashMap<String, Item>(); // key is the name of the item
-        //Item item = new Item("axe", 2); // example of adding an item to the map
-
         boolean running = true;
 
         while (running) {
@@ -34,13 +29,13 @@ public class Main {
                 Scanner input = new Scanner(System.in);
 
                 Item ItemToPut; // temporary reference created to pass to Item later in the loop (for validation)
-                String InputName = "";
+                String InputName;
                 System.out.print("Enter item name:");
                 InputName = input.nextLine(); // gets the nextline input from the user
 
                 // validates it here, so if constructor has problem with InputName,
                 // the user will notify now other than later
-                ItemToPut = new Item(InputName, 0);
+                new Item(InputName, 0);
 
                 System.out.print("Enter item value: ");
                 int InputValue = Integer.parseInt(input.nextLine()); // parse into int because the value is int
@@ -58,8 +53,7 @@ public class Main {
     public static void saveItemToDatabase(Item item) {
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-             Statement st = conn.createStatement();
-             PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)");
+             PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)")
         ) {
             pst.setString(1, item.getName());
             pst.setString(2, "Weapon");
@@ -68,14 +62,14 @@ public class Main {
             System.out.println("Connected to database!");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     public static void printAllItems() {
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery(sql);
+             ResultSet rs = st.executeQuery(sql)
         ) {
             while (rs.next()) {
                 String name = rs.getString("name"); // or column label like "name"
@@ -84,7 +78,7 @@ public class Main {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -97,11 +91,7 @@ public class Main {
         String line = input.nextLine().trim().toLowerCase();
         char choice = line.isEmpty() ? ' ' : line.charAt(0);
 
-        if (choice == charChoiceToContinue) {
-            return true;
-        } else {
-            return false;
-        }
+        return choice == charChoiceToContinue;
     }
 }
 
