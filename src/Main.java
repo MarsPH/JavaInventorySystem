@@ -29,28 +29,30 @@ public class Main {
     }
 
     public static Item askUserForItem() {
-        try {
-            Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                Scanner input = new Scanner(System.in);
 
-            Item ItemToPut; // temporary reference created to pass to Item later in the loop (for validation)
-            String InputName = "";
-            System.out.print("Enter item name:");
-            InputName = input.nextLine(); // gets the nextline input from the user
+                Item ItemToPut; // temporary reference created to pass to Item later in the loop (for validation)
+                String InputName = "";
+                System.out.print("Enter item name:");
+                InputName = input.nextLine(); // gets the nextline input from the user
 
-            // validates it here, so if constructor has problem with InputName,
-            // the user will notify now other than later
-            ItemToPut = new Item(InputName, 0);
+                // validates it here, so if constructor has problem with InputName,
+                // the user will notify now other than later
+                ItemToPut = new Item(InputName, 0);
 
-            System.out.print("Enter item value: ");
-            int InputValue = Integer.parseInt(input.nextLine()); // parse into int because the value is int
+                System.out.print("Enter item value: ");
+                int InputValue = Integer.parseInt(input.nextLine()); // parse into int because the value is int
 
-            // try to construct Item, if no exception thrown, then it means it's good
-            ItemToPut = new Item(InputName, InputValue);
-            return ItemToPut;
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input");
-            return null;
+                // try to construct Item, if no exception thrown, then it means it's good
+                ItemToPut = new Item(InputName, InputValue);
+                return ItemToPut;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input");
+            }
         }
+
     }
 
     public static void saveItemToDatabase(Item item) {
