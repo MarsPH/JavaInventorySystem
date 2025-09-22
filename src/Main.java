@@ -1,12 +1,11 @@
 import ui.MainMenu;
+import util.DBconnection;
 
 import java.sql.*;
 import java.util.*;
 
 public class Main {
-    private static final String url = "jdbc:mysql://localhost:3306/rpg_shop";
-    private static final String user = "root";
-    private static final String password = "1234";
+ 
     private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
@@ -58,7 +57,7 @@ public class Main {
 
     public static void saveItemToDatabase(Item item) {
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DBconnection.getConnection() ;
              PreparedStatement pst = conn.prepareStatement("insert into items (name, category, price) values (?, ?, ?)")
         ) {
             pst.setString(1, item.getName()); //sets the first ? as the name of the item to == name
@@ -73,7 +72,7 @@ public class Main {
     }
 
     public static void printAllItems() {
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DBconnection.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)
         ) {
