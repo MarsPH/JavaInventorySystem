@@ -1,3 +1,4 @@
+import ui.MainMenu;
 
 import java.sql.*;
 import java.util.*;
@@ -9,6 +10,9 @@ public class Main {
     private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
+
+        MainMenu mainMenu = new MainMenu();
+       mainMenu.Start();
 
         //if any exception is run to, it will be set to false
         boolean running = true;
@@ -22,6 +26,8 @@ public class Main {
         printAllItems();// after the inputs, it shows the table of items
 
     }
+
+
 
     public static Item askUserForItem() {
         while (true) {
@@ -85,6 +91,7 @@ public class Main {
     public static boolean askUserToContinue() {
         char charChoiceToContinue = 'c';
         Scanner input = new Scanner(System.in);
+
 
         System.out.println("Write C to Continue, Write other keys to quit");
 
