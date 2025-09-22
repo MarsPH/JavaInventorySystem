@@ -13,23 +13,24 @@ public class MainMenu {
         System.out.println("3: Exit\n");
         System.out.println("Select your Option :");
 
-        String userinput = input.nextLine().trim();
 
+        boolean looprunning = true;
+        while (looprunning) { String userinput = input.nextLine().trim();
         switch (userinput) {
-            case "1": {
+            case "1": { looprunning = false;
                 PlayerMenu pMenu = new PlayerMenu();
                 pMenu.playerMenu();
 
             }
             ;
             break;
-            case "2": {
+            case "2": { looprunning = false;
                 ShopkeeperMenu sMenu = new ShopkeeperMenu();
                 sMenu.shopkeeperMenu();
             }
             ;
             break;
-            case "3": {
+            case "3": { looprunning = false;
                 System.exit(0);
             }
             ;
@@ -40,4 +41,4 @@ public class MainMenu {
             ;
         }
     }
-}
+}}
