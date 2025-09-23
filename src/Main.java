@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Main {
- 
+
     private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
