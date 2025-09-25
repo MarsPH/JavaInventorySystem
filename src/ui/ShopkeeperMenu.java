@@ -1,18 +1,19 @@
 package ui;
-
-import com.sun.tools.javac.Main;
+import DAO.ItemDAO;
 
 import java.util.Scanner;
 
 public class ShopkeeperMenu {
 
     public void shopkeeperMenu() {
+
         final Scanner input = new Scanner(System.in);
 
         System.out.println("1: Add Stock");
         System.out.println("2: Change prices");
         System.out.println("3: Discard Items");
-        System.out.println("4: Back to Main Menu");
+        System.out.println("4: See Stock");
+        System.out.println("5: Back to Main Menu");
 
 
         boolean looprunning = true;
@@ -33,7 +34,13 @@ public class ShopkeeperMenu {
                     looprunning = false;
                 }
                 break;
-                case "4": {
+                case"4":{
+                    ItemDAO itemDAO =new ItemDAO();
+                    itemDAO.printAllItems();
+
+
+                }
+                case "5": {
                     looprunning = false;
                     MainMenu mainMenu = new MainMenu();
                     mainMenu.Start();
