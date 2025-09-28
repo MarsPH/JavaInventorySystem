@@ -1,13 +1,22 @@
 package ui;
-import DAO.ItemDAO;
+import DAO.itemDAO;
+import service.itemService;
 
 import java.util.Scanner;
 
 public class ShopkeeperMenu {
 
-    public void shopkeeperMenu() {
+    private itemService itemSer;
+    final Scanner scanner = new Scanner(System.in);
 
-        final Scanner input = new Scanner(System.in);
+    public ShopkeeperMenu(itemService itemService) {
+    }
+
+
+    public void show() {
+
+
+
 
         System.out.println("1: Add Stock");
         System.out.println("2: Change prices");
@@ -17,10 +26,10 @@ public class ShopkeeperMenu {
 
 
         boolean looprunning = true;
-        while (looprunning) {String userinput = input.nextLine().trim();
+        while (looprunning) {String userinput = scanner.nextLine().trim();
             switch (userinput) {
                 case "1": {
-                    // functionality to add stock
+
                     looprunning = false;
                 }
                 break;
@@ -35,15 +44,14 @@ public class ShopkeeperMenu {
                 }
                 break;
                 case"4":{
-                    ItemDAO itemDAO =new ItemDAO();
-                    itemDAO.printAllItems();
+                   viewItems();
 
 
                 }
                 case "5": {
                     looprunning = false;
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Start();
+                    MainMenu mainMenu = new MainMenu(itemSer);
+                    mainMenu.show();
                 }
                 break;
                 default: {
@@ -52,5 +60,17 @@ public class ShopkeeperMenu {
             }
 
         }
+    } private void viewItems() {
+        itemSer.listAllItems().forEach(System.out::println);
+    }
+
+    private void addItem() {
+        System.out.print("Enter item name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter price: ");
+        int price = scanner.nextInt();
+
+        itemSer.addNewItem(name, price);
     }
 }

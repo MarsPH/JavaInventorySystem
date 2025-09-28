@@ -1,21 +1,21 @@
-import DAO.ItemDAO;
+import DAO.itemDAO;
 import ui.MainMenu;
-import util.DBconnection;
 import  model.Item;
+import service.*;
 
-import java.sql.*;
 import java.util.*;
 
 public class Main {
 
-    private static final String sql = "SELECT name, price FROM items;\n";
+    //private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
+        itemDAO itemDAO = new itemDAO();
+        itemService itemService = new itemService(itemDAO);
+        MainMenu menu = new MainMenu(itemService);
+        menu.show();
 
-        MainMenu mainMenu = new MainMenu();
-       mainMenu.Start();
-       ItemDAO itemDAO= new ItemDAO();
-
+/*
         //if any exception is run to, it will be set to false
         boolean running = true;
 
@@ -27,11 +27,11 @@ public class Main {
         }
        // itemDAO.printAllItems();// after the inputs, it shows the table of items
 
-    }
+    }*/
 
 
 
-    public static Item askUserForItem() {
+ /*   public static Item askUserForItem() {
         while (true) {
             try {
                 Scanner input = new Scanner(System.in);
@@ -75,5 +75,6 @@ public class Main {
         return choice == charChoiceToContinue;
     }
 }
+*/
 
-
+    }}

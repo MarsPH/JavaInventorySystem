@@ -1,46 +1,25 @@
 package ui;
 
+import service.itemService;
 import java.util.Scanner;
 
 public class PlayerMenu {
+    private final itemService itemService;
+    private final Scanner scanner = new Scanner(System.in);
 
+    public PlayerMenu(itemService itemService) {
+        this.itemService = itemService;
+    }
 
-    public void playerMenu() {
+    public void show() {
+        System.out.println("--- Player Menu ---");
+        System.out.println("1. View Items");
+        System.out.println("2. Back");
 
-        System.out.println("1: Buy");
-        System.out.println("2: Sell");
-        System.out.println("3: Back to Main Menu");
-        //  System.out.println("4: Exit");
-
-        final Scanner input = new Scanner(System.in);
-
-        boolean looprunning = true;
-        while (looprunning) { String userinput = input.nextLine().trim();
-            switch (userinput) {
-                case "1": {
-                    // i will add the functionality to buy the stuff
-                    looprunning = false;
-                }
-                ;
-                break;
-                case "2": {
-                    // functionality to seell will  be added here
-                    looprunning = false;
-                }
-                case "3": {
-                    looprunning = false;
-
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Start();
-
-                }
-                ;
-                break;
-                default: {
-                    System.out.println("Incorrect input");
-                }
-            }
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> itemService.listAllItems().forEach(System.out::println);
+            case 2 -> { return; }
         }
-
     }
 }
