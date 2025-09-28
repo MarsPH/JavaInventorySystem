@@ -1,16 +1,13 @@
-import DAO.itemDAO;
+import DAO.itemDAOimpl;
 import ui.MainMenu;
-import  model.Item;
 import service.*;
-
-import java.util.*;
 
 public class Main {
 
     //private static final String sql = "SELECT name, price FROM items;\n";
 
     public static void main(String[] args) {
-        itemDAO itemDAO = new itemDAO();
+        itemDAOimpl itemDAO = new itemDAOimpl();
         itemService itemService = new itemService(itemDAO);
         MainMenu menu = new MainMenu(itemService);
         menu.show();
@@ -77,4 +74,5 @@ public class Main {
 }
 */
 
-    }}
+    }
+}

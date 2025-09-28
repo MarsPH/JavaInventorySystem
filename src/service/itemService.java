@@ -1,13 +1,13 @@
 package service;
 
-import DAO.itemDAO;
+import DAO.itemDAOimpl;
 import model.Item;
 import java.util.List;
 
 public class itemService {
-    private final itemDAO itemDAO;
+    private final itemDAOimpl itemDAO;
 
-    public itemService(itemDAO itemDAO) {
+    public itemService(itemDAOimpl itemDAO) {
         this.itemDAO = itemDAO;
     }
 
@@ -15,8 +15,8 @@ public class itemService {
         return itemDAO.getAllItems();
     }
 
-    public void addNewItem(String name, int price) {
-        Item item = new Item(name, price);
+    public void addNewItem(String name,String category,int price) {
+        Item item = new Item(name,category , price);
         itemDAO.saveItemToDatabase(item);
     }
 }
