@@ -3,10 +3,11 @@ public class Item {
 
     public String name;
     public int Value;
+    public String Category;
     private final int minValue = 0;
     private final int maxValue = 100;
 
-    public Item(String name, int value) throws IllegalArgumentException {
+    public Item(String name, String category, int value) throws IllegalArgumentException {
         if (name.isEmpty() || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Item name cannot be empty");
         }
@@ -16,6 +17,7 @@ public class Item {
         }
         this.name = name;
         this.Value = value;
+        this.Category =category;
     }
 
     public String getName() {
@@ -23,6 +25,15 @@ public class Item {
     }
     public int getValue() {
         return Value;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + Category + ") - " + Value + " gold";
     }
 
 }
