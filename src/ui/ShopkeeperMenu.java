@@ -1,5 +1,6 @@
 package ui;
 
+import model.Item;
 import service.itemService;  // renamed to proper class name
 
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class ShopkeeperMenu {
 
             String userinput = scanner.nextLine().trim();
             switch (userinput) {
-                case "1" -> addItem();
+                case "1" -> addItem(askUserForItem());
                 case "2" -> {
                     // somethingg to Change prices
                 }
@@ -42,14 +43,38 @@ public class ShopkeeperMenu {
         itemService.listAllItems().forEach(System.out::println);
     }
 
-    private void addItem() {
-        System.out.print("Enter item name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Enter price: ");
-        int price = scanner.nextInt();
-        scanner.nextLine(); // flush newline
-
-        itemService.addNewItem(name,"Weapon",price);
+    private void addItem(Item itemToAdd) {
+        itemService.addNewItem(itemToAdd.getName(), itemToAdd.getCategory(), itemToAdd.getValue());
     }
+
+    public Item askUserForItem() {
+        while (true) {
+            try {
+                Item ItemToPut; // temporary reference created to pass to Item later in the loop (for validation)
+                String InputName;
+                System.out.print("Enter item name:");
+                InputName = scanner.nextLine(); // gets the nextline input from the user
+
+                // validates it here, so if constructor has problem with InputName,
+                // the user will notify now other than later
+                new Item(InputName,"", 0);
+
+                System.out.print("Enter item value: ");
+                int InputValue = Integer.parseInt(scanner.nextLine()); // parse into int because the value is int
+
+                // validates it here, so if constructor has problem with InputValue,
+                // the user will notify now other than later
+                new Item(InputName,"", InputValue);
+
+                System.out.print("Enter item Category: ");
+                String InputCategory =  scanner.nextLine();
+
+                // try to construct Item, if no exception thrown, then it means it's good
+                ItemToPut = new Item(InputName, InputCategory  ,InputValue);
+                return ItemToPut;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input");
+            }
+        }
+}
 }

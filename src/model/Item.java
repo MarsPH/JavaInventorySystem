@@ -1,9 +1,9 @@
 package model;
 public class Item {
 
-    public String name;
-    public int Value;
-    public String Category;
+    private String name;
+    private int Value;
+    private String Category;
     private final int minValue = 0;
     private final int maxValue = 100;
 
