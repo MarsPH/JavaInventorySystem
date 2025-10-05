@@ -1,56 +1,55 @@
 package ui;
-import DAO.ItemDAO;
+
+import service.itemService;  // renamed to proper class name
 
 import java.util.Scanner;
 
 public class ShopkeeperMenu {
+    private final itemService itemService;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public void shopkeeperMenu() {
+    public ShopkeeperMenu(itemService itemService) {
+        this.itemService = itemService;
+    }
 
-        final Scanner input = new Scanner(System.in);
-
-        System.out.println("1: Add Stock");
-        System.out.println("2: Change prices");
-        System.out.println("3: Discard Items");
-        System.out.println("4: See Stock");
-        System.out.println("5: Back to Main Menu");
-
-
+    public void show() {
         boolean looprunning = true;
-        while (looprunning) {String userinput = input.nextLine().trim();
+        while (looprunning) {
+            System.out.println("\n--- Shopkeeper Menu ---");
+            System.out.println("1: Add Stock");
+            System.out.println("2: Change prices");
+            System.out.println("3: Discard Items");
+            System.out.println("4: See Stock");
+            System.out.println("5: Back to Main Menu");
+
+            String userinput = scanner.nextLine().trim();
             switch (userinput) {
-                case "1": {
-                    // functionality to add stock
-                    looprunning = false;
+                case "1" -> addItem();
+                case "2" -> {
+                    // somethingg to Change prices
                 }
-                break;
-                case "2": {
-                    // some more vnnsvm
-                    looprunning = false;
+                case "3" -> {
+                    // same here to discard items
                 }
-                break;
-                case "3": {
-                    //jvsjfjfksdvnbjdfnvj
-                    looprunning = false;
-                }
-                break;
-                case"4":{
-                    ItemDAO itemDAO =new ItemDAO();
-                    itemDAO.printAllItems();
-
-
-                }
-                case "5": {
-                    looprunning = false;
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Start();
-                }
-                break;
-                default: {
-                    System.out.println("Invalid Input");
-                }
+                case "4" -> viewItems();
+                case "5" -> looprunning = false;  // just exit
+                default -> System.out.println("Invalid Input");
             }
-
         }
+    }
+
+    private void viewItems() {
+        itemService.listAllItems().forEach(System.out::println);
+    }
+
+    private void addItem() {
+        System.out.print("Enter item name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter price: ");
+        int price = scanner.nextInt();
+        scanner.nextLine(); // flush newline
+
+        itemService.addNewItem(name,"Weapon",price);
     }
 }
