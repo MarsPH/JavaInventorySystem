@@ -36,7 +36,7 @@ public class Main {
                 Item ItemToPut; // temporary reference created to pass to Item later in the loop (for validation)
                 String InputName;
                 System.out.print("Enter item name:");
-                InputName = input.nextLine(); // gets the nextline input from the user
+                InputName = input.nextLine(); // gets the  input from the user
 
                 // validates it here, so if constructor has problem with InputName,
                 // the user will notify now other than later
