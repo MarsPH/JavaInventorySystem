@@ -56,9 +56,14 @@ public class itemDAOimpl implements itemDAO {
              PreparedStatement pst = conn.prepareStatement(sql)) {
 
             pst.setString(1, item.getName());
-            pst.executeUpdate();
+            int rows = pst.executeUpdate();
+            if (rows == 0) {
+                System.out.println("No item found with that name.");
+            } else {
+                System.out.println( rows + "Item Deleted Successfully , i think soo");
+            }
 
-            System.out.println("Item Deleted Successfully , i think soo");
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
