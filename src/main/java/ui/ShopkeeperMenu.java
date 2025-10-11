@@ -30,7 +30,7 @@ public class ShopkeeperMenu {
                     // somethingg to Change prices
                 }
                 case "3" -> {
-                    // same here to discard items
+                    discardItem(askUserforItemName());
                 }
                 case "4" -> viewItems();
                 case "5" -> looprunning = false;  // just exit
@@ -57,24 +57,45 @@ public class ShopkeeperMenu {
 
                 // validates it here, so if constructor has problem with InputName,
                 // the user will notify now other than later
-                new Item(InputName,"", 0);
+                new Item(InputName, "", 0);
 
                 System.out.print("Enter item value: ");
                 int InputValue = Integer.parseInt(scanner.nextLine()); // parse into int because the value is int
 
                 // validates it here, so if constructor has problem with InputValue,
                 // the user will notify now other than later
-                new Item(InputName,"", InputValue);
+                new Item(InputName, "", InputValue);
 
                 System.out.print("Enter item Category: ");
-                String InputCategory =  scanner.nextLine();
+                String InputCategory = scanner.nextLine();
 
                 // try to construct Item, if no exception thrown, then it means it's good
-                ItemToPut = new Item(InputName, InputCategory  ,InputValue);
+                ItemToPut = new Item(InputName, InputCategory, InputValue);
                 return ItemToPut;
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid input");
             }
         }
-}
+    }
+
+    public void discardItem(Item itemtoDiscard) {
+        itemService.discardItem(itemtoDiscard.getName());
+    }
+
+    public Item askUserforItemName() {
+        while (true) {
+            try {
+                Item itemtoDiscard;
+                String InputName;
+                System.out.print("Enter the name of the item to discard: ");
+                InputName = scanner.nextLine().trim();
+                new Item(InputName);
+                itemtoDiscard = new Item(InputName);
+
+                return itemtoDiscard;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input");
+            }
+        }
+    }
 }

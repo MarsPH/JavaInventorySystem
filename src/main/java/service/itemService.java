@@ -19,4 +19,10 @@ public class itemService {
         Item item = new Item(name,category , price);
         itemDAO.saveItemToDatabase(item);
     }
+
+    public void discardItem(String name)
+    {
+        Item item= new Item(name);
+        itemDAO.dicardItem(item);
+    }
 }

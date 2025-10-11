@@ -1,4 +1,5 @@
 package DAO;
+
 import model.Item;
 import util.DBconnection;
 
@@ -43,6 +44,21 @@ public class itemDAOimpl implements itemDAO {
 
             System.out.println("Item added successfully.");
 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void dicardItem(Item item) {
+        String sql = "DELETE FROM items WHERE name =?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, item.getName());
+            pst.executeUpdate();
+
+            System.out.println("Item Deleted Successfully , i think soo");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
