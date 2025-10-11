@@ -1,6 +1,7 @@
 package service;
 
 import DAO.itemDAOimpl;
+import com.google.protobuf.Value;
 import model.Item;
 import java.util.List;
 
@@ -24,5 +25,10 @@ public class itemService {
     {
         Item item= new Item(name);
         itemDAO.dicardItem(item);
+    }
+
+    public void changePrice(String name, int Value){
+        Item item = new Item(name,Value);
+        itemDAO.changePrice(item);
     }
 }

@@ -40,6 +40,10 @@ public class Item {
     public String getName() {
         return name;
     }
+     public Item( String name, int value){
+        this(name ,"misc",value);
+     }
+
     public int getValue() {
         return Value;
     }
