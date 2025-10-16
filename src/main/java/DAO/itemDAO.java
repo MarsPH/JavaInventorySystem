@@ -9,5 +9,7 @@ public interface itemDAO {
 
     void saveItemToDatabase(Item item);
 
+    void dicardItem(Item item);
 
+    void changePrice(Item item);
 }
