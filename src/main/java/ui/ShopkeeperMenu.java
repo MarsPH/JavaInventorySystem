@@ -56,12 +56,14 @@ public class ShopkeeperMenu {
     private int askUserForValue() {
         System.out.print("Enter item value: ");
         int InputNumber = Integer.parseInt(scanner.nextLine().trim());
+        // first it checks that the InputNumber is ok for the item, if no it throws an exception which is inside the Item
+        // that is caught by the try catch in askUserForItem
         new Item("", " ", InputNumber);
         return InputNumber;
     }
 
     public Item askUserForItem() {
-        while(true) {
+        while(true) { //loops through to make sure the user will write a correct input for the item
             try {
                 String name = askUserForName();
                 int value = askUserForValue();
