@@ -8,13 +8,13 @@ public class Item {
     private final int maxValue = 100;
 
     public Item(String name, String category, int value) throws IllegalArgumentException {
-        if (name.isEmpty() || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Item name cannot be empty");
-        }
+            if (name.isEmpty() || name.trim().isEmpty()) {
+                throw new IllegalArgumentException("Item name cannot be empty");
+            }
 
-        if (value < minValue || value > maxValue) {
-            throw new IllegalArgumentException("Item value must be between " + minValue + " and " + maxValue);
-        }
+            if (value < minValue || value > maxValue) {
+                throw new IllegalArgumentException("Item value must be between " + minValue + " and " + maxValue);
+            }
 
         this.name = name;
         this.Value = value;

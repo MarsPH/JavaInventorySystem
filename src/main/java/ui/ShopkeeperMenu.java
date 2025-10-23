@@ -55,19 +55,23 @@ public class ShopkeeperMenu {
 
     private int askUserForValue() {
         System.out.print("Enter item value: ");
-        try {
-            return Integer.parseInt(scanner.nextLine().trim());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid number, defaulting to 0.");
-            return 0;
-        }
+        int InputNumber = Integer.parseInt(scanner.nextLine().trim());
+        new Item("", " ", InputNumber);
+        return InputNumber;
     }
 
     public Item askUserForItem() {
-        String name = askUserForName();
-        int value = askUserForValue();
-        String category = askUserForCategory();
-        return new Item(name, category, value);
+        while(true) {
+            try {
+                String name = askUserForName();
+                int value = askUserForValue();
+                String category = askUserForCategory();
+                return new Item(name, category, value);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Invalid Input" + e.getMessage());
+            }
+        }
     }
 
     public Item askUserForItemName() {
