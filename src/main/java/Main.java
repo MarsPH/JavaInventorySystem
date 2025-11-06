@@ -1,15 +1,23 @@
-import DAO.itemDAOimpl;
-import ui.MainMenu;
-import service.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
-public class Main {
+import java.util.Objects;
 
-    //private static final String sql = "SELECT name, price FROM items;\n";
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        System.out.println(getClass().getResource("/sample.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+        stage.setTitle("JavaFX FXML Sample");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     public static void main(String[] args) {
-        itemDAOimpl itemDAO = new itemDAOimpl();
-        itemService itemService = new itemService(itemDAO);
-        MainMenu menu = new MainMenu(itemService);
-        menu.show();
+        launch(args);
     }
 }
