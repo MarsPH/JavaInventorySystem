@@ -6,10 +6,14 @@ import model.Item;
 import java.util.List;
 
 public class itemService {
-    private final itemDAOimpl itemDAO;
+    private itemDAOimpl itemDAO;
 
     public itemService(itemDAOimpl itemDAO) {
         this.itemDAO = itemDAO;
+    }
+
+    public itemService() {
+        this.itemDAO = new itemDAOimpl();
     }
 
     public List<Item> listAllItems() {
