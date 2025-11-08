@@ -20,14 +20,27 @@ public class Controller {
 
     @FXML
     private void initialize() {
-        playerButton.setOnAction(e -> openPlayerMenu());
+        playerButton.setOnAction(e -> {((Stage) playerButton.getScene().getWindow()).hide(); openPlayerMenu();});
         shopButton.setOnAction(e -> openShopkeeperMenu());
         exitButton.setOnAction(e -> ((Stage) exitButton.getScene().getWindow()).close());
     }
 
     private void openPlayerMenu() {
-        // You can add logic later for player menu
-        System.out.println("Player Menu clicked.");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PlayerMenu.fxml"));
+            Parent root = loader.load();
+
+            // Pass your service to controller
+            PlayerMenuController controller = loader.getController();
+           // controller.setService(new itemService());
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Player Menu");
+            stage.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void openShopkeeperMenu() {

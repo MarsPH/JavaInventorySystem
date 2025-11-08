@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane prefHeight="600" prefWidth="800" style="-fx-background-color: linear-gradient(to bottom right, #1f1c2c, #928dab);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Controller">
+
+    <VBox alignment="CENTER" prefHeight="342.0" prefWidth="596.0" spacing="25">
+        <Text fill="white" style="-fx-font-size: 48px; -fx-font-family: 'Consolas'; -fx-effect: dropshadow(gaussian, black, 20, 0, 0, 0);" text="MAIN MENU" />
+
+        <Button fx:id="playerButton" prefHeight="60" prefWidth="300" style="-fx-font-size: 20px;                        -fx-font-family: 'Consolas';                        -fx-text-fill: white;                        -fx-background-radius: 10;                        -fx-background-color: linear-gradient(to right, #4776E6, #8E54E9);                        -fx-effect: dropshadow(gaussian, black, 15, 0, 0, 0);" text="PLAYER MENU" />
+
+        <Button fx:id="shopButton" prefHeight="60" prefWidth="300" style="-fx-font-size: 20px;                        -fx-font-family: 'Consolas';                        -fx-text-fill: white;                        -fx-background-radius: 10;                        -fx-background-color: linear-gradient(to right, #4776E6, #8E54E9);                        -fx-effect: dropshadow(gaussian, black, 15, 0, 0, 0);" text="SHOPKEEPER MENU" />
+
+        <Button fx:id="exitButton" prefHeight="60" prefWidth="300" style="-fx-font-size: 20px;                        -fx-font-family: 'Consolas';                        -fx-text-fill: white;                        -fx-background-radius: 10;                        -fx-background-color: linear-gradient(to right, #4776E6, #8E54E9);                        -fx-effect: dropshadow(gaussian, black, 15, 0, 0, 0);" text="EXIT" />
+    </VBox>
+</StackPane>
