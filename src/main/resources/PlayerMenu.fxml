@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fillWidth="true" prefHeight="600.0" prefWidth="800.0" spacing="12" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PlayerMenuController">
+    <padding>
+        <Insets topRightBottomLeft="16" />
+    </padding>
+
+    <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Player Menu" />
+
+    <HBox spacing="8">
+        <Button fx:id="viewItemsButton" onAction="#onViewItems" text="View Items" />
+        <Button fx:id="backButton" onAction="#onBack" text="Back" />
+        <Region HBox.hgrow="ALWAYS" />
+        <TextField fx:id="filterField" promptText="Filter items..." />
+        <Button onAction="#onClearFilter" text="Clear" />
+    </HBox>
+
+    <ListView fx:id="itemsListView" VBox.vgrow="ALWAYS" />
+
+    <HBox spacing="8">
+        <Label text="Selected:" />
+        <Label fx:id="selectedLabel" text="None" />
+    </HBox>
+</VBox>
