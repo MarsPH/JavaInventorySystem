@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.ShopkeeperMenuController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ShopkeeperMenuController">
 
     <top>
-        <Label text="Shopkeeper Menu" style="-fx-font-size: 24; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+        <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Shopkeeper Menu" BorderPane.alignment="CENTER" />
     </top>
 
     <center>
         <VBox spacing="10">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
             <TableView fx:id="stockTable" prefHeight="250" prefWidth="600">
                 <columns>
-                    <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
-                    <TableColumn fx:id="colCategory" text="Category" prefWidth="200"/>
-                    <TableColumn fx:id="colValue" text="Value" prefWidth="200"/>
+                    <TableColumn fx:id="colName" prefWidth="200" text="Name" />
+                    <TableColumn fx:id="colCategory" prefWidth="200" text="Category" />
+                    <TableColumn fx:id="colValue" prefWidth="200" text="Value" />
                 </columns>
             </TableView>
         </VBox>
@@ -28,23 +28,32 @@
     <bottom>
         <VBox spacing="10">
             <padding>
-                <Insets top="10" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="10" />
             </padding>
 
             <GridPane hgap="10" vgap="10">
-                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                <Label text="Category:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="categoryField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                <Label text="Value:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="valueField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="categoryField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Value:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="valueField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
 
-            <HBox spacing="10" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10">
                 <Button fx:id="addBtn" text="Add Item" />
                 <Button fx:id="changeBtn" text="Change Price" />
                 <Button fx:id="discardBtn" text="Discard Item" />
-                <Button fx:id="backBtn" text="Back" />
+                <Button fx:id="backBtn" onAction="#onBack" text="Back" />
             </HBox>
         </VBox>
     </bottom>
