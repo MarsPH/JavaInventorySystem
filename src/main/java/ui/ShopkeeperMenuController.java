@@ -6,6 +6,7 @@ import javafx.collections.*;
 import javafx.stage.Stage;
 import model.Item;
 import service.itemService;
+import util.NavigationHelper;
 
 public class ShopkeeperMenuController {
 
@@ -39,8 +40,13 @@ public class ShopkeeperMenuController {
         addBtn.setOnAction(e -> addItem());
         changeBtn.setOnAction(e -> changePrice());
         discardBtn.setOnAction(e -> discardItem());
-        backBtn.setOnAction(e -> ((Stage) backBtn.getScene().getWindow()).close());
+
     }
+    @FXML
+    private void onBack() {
+        // Close the window; replace with navigation if using a scene router
+        backBtn.getScene().getWindow().hide();
+        NavigationHelper.showMainMenuFrom(backBtn);}
 
     private void refreshStock() {
         if (itemService != null) {
