@@ -31,6 +31,12 @@ public class itemService {
     public void addNewItem(String name,String category,int price) {
         Item item = new Item(name,category , price);
         itemDAO.saveItemToDatabase(item);
+        // To get the id, we can query the item by name
+        List<Item> allItems = itemDAO.getAllItems();
+        Item addedItem = allItems.stream().filter(i -> i.getName().equals(name)).findFirst().orElse(null);
+        if (addedItem != null) {
+            shopStockDAO.addItemToStock(addedItem.getItemId(), 10); // Add 10 to stock
+        }
     }
 
     public void discardItem(String name)
@@ -60,6 +66,14 @@ public class itemService {
             throw new IllegalArgumentException("Not enough items in shop stock.");
         }
 
+        // Check gold
+        int totalPrice = shopItem.getValue() * quantity;
+        int currentGold = playerInventoryDAO.getPlayerGold();
+        if (currentGold < totalPrice) {
+            throw new IllegalArgumentException("Not enough gold.");
+        }
+        playerInventoryDAO.updatePlayerGold(currentGold - totalPrice);
+
         // Add to player inventory
         playerInventoryDAO.addItemToInventory(itemId, quantity);
 
@@ -77,6 +91,11 @@ public class itemService {
             throw new IllegalArgumentException("Not enough items in player inventory.");
         }
 
+        // Check gold
+        int totalPrice = playerItem.getValue() * quantity;
+        int currentGold = playerInventoryDAO.getPlayerGold();
+        playerInventoryDAO.updatePlayerGold(currentGold + totalPrice);
+
         // Remove from player inventory
         playerInventoryDAO.removeItemFromInventory(itemId, quantity);
 
@@ -84,5 +103,9 @@ public class itemService {
         shopStockDAO.addItemToStock(itemId, quantity);
 
         // TODO: Record transaction
+    }
+
+    public int getPlayerGold() {
+        return playerInventoryDAO.getPlayerGold();
     }
 }

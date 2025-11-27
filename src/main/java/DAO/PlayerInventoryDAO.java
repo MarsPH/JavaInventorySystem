@@ -69,7 +69,46 @@ public class PlayerInventoryDAO {
             int rows = pst.executeUpdate();
             if (rows == 0) {
                 System.out.println("Not enough quantity or item not found.");
+            } else {
+                // Remove if quantity <= 0
+                String deleteSql = "DELETE FROM player_inventory WHERE player_id = ? AND item_id = ? AND quantity <= 0";
+                try (PreparedStatement deletePst = conn.prepareStatement(deleteSql)) {
+                    deletePst.setInt(1, PLAYER_ID);
+                    deletePst.setInt(2, itemId);
+                    deletePst.executeUpdate();
+                }
             }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public int getPlayerGold() {
+        String sql = "SELECT gold FROM players WHERE player_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, PLAYER_ID);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("gold");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public void updatePlayerGold(int gold) {
+        String sql = "UPDATE players SET gold = ? WHERE player_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, gold);
+            pst.setInt(2, PLAYER_ID);
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

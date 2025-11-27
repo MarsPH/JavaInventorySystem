@@ -7,7 +7,10 @@
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PlayerMenuController">
 
     <top>
-        <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Player Menu" BorderPane.alignment="CENTER" />
+        <VBox>
+            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Player Menu" />
+            <Label fx:id="goldLabel" text="Gold: 0" />
+        </VBox>
     </top>
 
     <center>

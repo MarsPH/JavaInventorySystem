@@ -21,6 +21,7 @@ public class PlayerMenuController {
     @FXML private TableColumn<Item, Integer> invColValue;
     @FXML private TableColumn<Item, Integer> invColQuantity;
     @FXML private TextField quantityField;
+    @FXML private Label goldLabel;
     @FXML private Button buyButton;
     @FXML private Button sellButton;
     @FXML private Button backButton;
@@ -33,6 +34,7 @@ public class PlayerMenuController {
         this.itemService = itemService;
         refreshShop();
         refreshInventory();
+        refreshGold();
     }
 
     @FXML
@@ -73,6 +75,12 @@ public class PlayerMenuController {
         }
     }
 
+    private void refreshGold() {
+        if (itemService != null) {
+            goldLabel.setText("Gold: " + itemService.getPlayerGold());
+        }
+    }
+
     private void buyItem() {
         Item selected = shopTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -84,6 +92,7 @@ public class PlayerMenuController {
             itemService.buyItem(selected.getItemId(), quantity);
             refreshShop();
             refreshInventory();
+            refreshGold();
             showAlert("Purchase successful!");
         } catch (Exception ex) {
             showAlert("Error: " + ex.getMessage());
@@ -101,6 +110,7 @@ public class PlayerMenuController {
             itemService.sellItem(selected.getItemId(), quantity);
             refreshShop();
             refreshInventory();
+            refreshGold();
             showAlert("Sale successful!");
         } catch (Exception ex) {
             showAlert("Error: " + ex.getMessage());

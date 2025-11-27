@@ -69,6 +69,14 @@ public class ShopStockDAO {
             int rows = pst.executeUpdate();
             if (rows == 0) {
                 System.out.println("Not enough quantity or item not found.");
+            } else {
+                // Remove if quantity <= 0
+                String deleteSql = "DELETE FROM shop_stock WHERE shop_id = ? AND item_id = ? AND quantity <= 0";
+                try (PreparedStatement deletePst = conn.prepareStatement(deleteSql)) {
+                    deletePst.setInt(1, SHOP_ID);
+                    deletePst.setInt(2, itemId);
+                    deletePst.executeUpdate();
+                }
             }
 
         } catch (SQLException e) {
