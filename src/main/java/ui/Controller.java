@@ -21,7 +21,7 @@ public class Controller {
     @FXML
     private void initialize() {
         playerButton.setOnAction(e -> {((Stage) playerButton.getScene().getWindow()).hide(); openPlayerMenu();});
-        shopButton.setOnAction(e -> openShopkeeperMenu());
+        shopButton.setOnAction(e -> {((Stage) playerButton.getScene().getWindow()).hide(); openShopkeeperMenu();});
         exitButton.setOnAction(e -> ((Stage) exitButton.getScene().getWindow()).close());
     }
 

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import service.itemService;
+import util.NavigationHelper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,8 +52,7 @@ public class PlayerMenuController {
     private void onBack() {
         // Close the window; replace with navigation if using a scene router
         backButton.getScene().getWindow().hide();
-
-    }
+        NavigationHelper.showMainMenuFrom(backButton);}
 
     @FXML
     private void onClearFilter() {
