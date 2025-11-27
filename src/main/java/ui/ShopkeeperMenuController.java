@@ -18,6 +18,7 @@ public class ShopkeeperMenuController {
     @FXML private TextField nameField;
     @FXML private TextField categoryField;
     @FXML private TextField valueField;
+    @FXML private TextField quantityField;
     @FXML private Button addBtn;
     @FXML private Button changeBtn;
     @FXML private Button discardBtn;
@@ -61,7 +62,8 @@ public class ShopkeeperMenuController {
             String name = nameField.getText().trim();
             String category = categoryField.getText().trim();
             int value = Integer.parseInt(valueField.getText().trim());
-            itemService.addNewItem(name, category, value);
+            int quantity = Integer.parseInt(quantityField.getText().trim());
+            itemService.addNewItem(name, category, value, quantity);
             refreshStock();
         } catch (Exception ex) {
             showError("Invalid Input");

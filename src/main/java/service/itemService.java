@@ -29,13 +29,17 @@ public class itemService {
     }
 
     public void addNewItem(String name,String category,int price) {
+        addNewItem(name, category, price, 10); // Default quantity 10
+    }
+
+    public void addNewItem(String name,String category,int price, int quantity) {
         Item item = new Item(name,category , price);
         itemDAO.saveItemToDatabase(item);
         // To get the id, we can query the item by name
         List<Item> allItems = itemDAO.getAllItems();
         Item addedItem = allItems.stream().filter(i -> i.getName().equals(name)).findFirst().orElse(null);
         if (addedItem != null) {
-            shopStockDAO.addItemToStock(addedItem.getItemId(), 10); // Add 10 to stock
+            shopStockDAO.addItemToStock(addedItem.getItemId(), quantity);
         }
     }
 
