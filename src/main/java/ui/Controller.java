@@ -32,7 +32,7 @@ public class Controller {
 
             // Pass your service to controller
             PlayerMenuController controller = loader.getController();
-           // controller.setService(new itemService());
+            controller.setItemService(new itemService());
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
