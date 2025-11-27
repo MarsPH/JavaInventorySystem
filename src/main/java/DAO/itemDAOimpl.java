@@ -9,7 +9,7 @@ import java.util.List;
 
 public class itemDAOimpl implements itemDAO {
 
-    private static final String SELECT_ALL = "SELECT name, category, price FROM items";
+    private static final String SELECT_ALL = "SELECT item_id, name, category, price FROM items";
 
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<>();
@@ -19,9 +19,11 @@ public class itemDAOimpl implements itemDAO {
 
             while (rs.next()) {
                 Item item = new Item(
+                        rs.getInt("item_id"),
                         rs.getString("name"),
                         rs.getString("category"),
-                        rs.getInt("price")
+                        rs.getInt("price"),
+                        0 // quantity not used here
                 );
                 items.add(item);
             }

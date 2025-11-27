@@ -14,6 +14,7 @@ public class ShopkeeperMenuController {
     @FXML private TableColumn<Item, String> colName;
     @FXML private TableColumn<Item, String> colCategory;
     @FXML private TableColumn<Item, Integer> colValue;
+    @FXML private TableColumn<Item, Integer> colQuantity;
     @FXML private TextField nameField;
     @FXML private TextField categoryField;
     @FXML private TextField valueField;
@@ -35,6 +36,7 @@ public class ShopkeeperMenuController {
         colName.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getName()));
         colCategory.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCategory()));
         colValue.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getValue()));
+        colQuantity.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getQuantity()));
         stockTable.setItems(stockData);
 
         addBtn.setOnAction(e -> addItem());
@@ -50,7 +52,7 @@ public class ShopkeeperMenuController {
 
     private void refreshStock() {
         if (itemService != null) {
-            stockData.setAll(itemService.listAllItems());
+            stockData.setAll(itemService.getShopStock());
         }
     }
 

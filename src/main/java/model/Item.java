@@ -1,24 +1,31 @@
 package model;
 public class Item {
-   // private int itemid;
+    private int itemId;
     private String name;
     private int Value;
     private String Category;
+    private int quantity;
     private final int minValue = 0;
     private final int maxValue = 100;
 
-    public Item(String name, String category, int value) throws IllegalArgumentException {
-            if (name.isEmpty() || name.trim().isEmpty()) {
-                throw new IllegalArgumentException("Item name cannot be empty");
-            }
+    public Item(int itemId, String name, String category, int value, int quantity) throws IllegalArgumentException {
+        if (name.isEmpty() || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Item name cannot be empty");
+        }
 
-            if (value < minValue || value > maxValue) {
-                throw new IllegalArgumentException("Item value must be between " + minValue + " and " + maxValue);
-            }
+        if (value < minValue || value > maxValue) {
+            throw new IllegalArgumentException("Item value must be between " + minValue + " and " + maxValue);
+        }
 
+        this.itemId = itemId;
         this.name = name;
         this.Value = value;
-        this.Category =category;
+        this.Category = category;
+        this.quantity = quantity;
+    }
+
+    public Item(String name, String category, int value) throws IllegalArgumentException {
+        this(0, name, category, value, 0);
     }
 
     public Item(String name) {
@@ -37,12 +44,17 @@ public class Item {
         this.name = trimmed;
     }
 
+    public int getItemId() {
+        return itemId;
+    }
+
     public String getName() {
         return name;
     }
-     public Item( String name, int value){
-        this(name ,"misc",value);
-     }
+
+    public Item(String name, int value) {
+        this(0, name, "misc", value, 0);
+    }
 
     public int getValue() {
         return Value;
@@ -52,9 +64,17 @@ public class Item {
         return Category;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        return name + " (" + Category + ") - " + Value + " gold";
+        return name + " (" + Category + ") - " + Value + " gold - Qty: " + quantity;
     }
 
 }

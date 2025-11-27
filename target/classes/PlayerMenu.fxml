@@ -4,25 +4,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fillWidth="true" prefHeight="600.0" prefWidth="800.0" spacing="12" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PlayerMenuController">
-    <padding>
-        <Insets topRightBottomLeft="16" />
-    </padding>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PlayerMenuController">
 
-    <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Player Menu" />
+    <top>
+        <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Player Menu" BorderPane.alignment="CENTER" />
+    </top>
 
-    <HBox spacing="8">
-        <Button fx:id="viewItemsButton" onAction="#onViewItems" text="View Items" />
-        <Button fx:id="backButton" onAction="#onBack" text="Back" />
-        <Region HBox.hgrow="ALWAYS" />
-        <TextField fx:id="filterField" promptText="Filter items..." />
-        <Button onAction="#onClearFilter" text="Clear" />
-    </HBox>
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label text="Shop Stock (Click row to select for buying)" />
+            <TableView fx:id="shopTable" prefHeight="200" prefWidth="600">
+                <columns>
+                    <TableColumn fx:id="shopColName" prefWidth="150" text="Name" />
+                    <TableColumn fx:id="shopColCategory" prefWidth="150" text="Category" />
+                    <TableColumn fx:id="shopColValue" prefWidth="150" text="Value" />
+                    <TableColumn fx:id="shopColQuantity" prefWidth="150" text="Quantity" />
+                </columns>
+            </TableView>
+            <Label text="Your Inventory (Click row to select for selling)" />
+            <TableView fx:id="inventoryTable" prefHeight="200" prefWidth="600">
+                <columns>
+                    <TableColumn fx:id="invColName" prefWidth="150" text="Name" />
+                    <TableColumn fx:id="invColCategory" prefWidth="150" text="Category" />
+                    <TableColumn fx:id="invColValue" prefWidth="150" text="Value" />
+                    <TableColumn fx:id="invColQuantity" prefWidth="150" text="Quantity" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
 
-    <ListView fx:id="itemsListView" VBox.vgrow="ALWAYS" />
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="10" />
+            </padding>
 
-    <HBox spacing="8">
-        <Label text="Selected:" />
-        <Label fx:id="selectedLabel" text="None" />
-    </HBox>
-</VBox>
+            <HBox spacing="10">
+                <Label text="Quantity:" />
+                <TextField fx:id="quantityField" promptText="Enter quantity" prefWidth="100" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <Button fx:id="buyButton" text="Buy Selected" />
+                <Button fx:id="sellButton" text="Sell Selected" />
+                <Button fx:id="backButton" onAction="#onBack" text="Back" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

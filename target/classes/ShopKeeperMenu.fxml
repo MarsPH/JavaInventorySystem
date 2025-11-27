@@ -17,9 +17,10 @@
             </padding>
             <TableView fx:id="stockTable" prefHeight="250" prefWidth="600">
                 <columns>
-                    <TableColumn fx:id="colName" prefWidth="200" text="Name" />
-                    <TableColumn fx:id="colCategory" prefWidth="200" text="Category" />
-                    <TableColumn fx:id="colValue" prefWidth="200" text="Value" />
+                    <TableColumn fx:id="colName" prefWidth="150" text="Name" />
+                    <TableColumn fx:id="colCategory" prefWidth="150" text="Category" />
+                    <TableColumn fx:id="colValue" prefWidth="150" text="Value" />
+                    <TableColumn fx:id="colQuantity" prefWidth="150" text="Quantity" />
                 </columns>
             </TableView>
         </VBox>
