@@ -83,4 +83,19 @@ public class ShopStockDAO {
             System.out.println(e.getMessage());
         }
     }
+
+    public void updateItemQuantity(int itemId, int newQuantity) {
+        String sql = "UPDATE shop_stock SET quantity = ? WHERE shop_id = ? AND item_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, newQuantity);
+            pst.setInt(2, SHOP_ID);
+            pst.setInt(3, itemId);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

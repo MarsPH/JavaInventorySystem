@@ -36,7 +36,7 @@
                  <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                  <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                  <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                 <TextField fx:id="categoryField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                 <ComboBox fx:id="categoryField" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                  <Label text="Value:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                  <TextField fx:id="valueField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                  <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="3" />

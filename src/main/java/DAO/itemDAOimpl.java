@@ -91,4 +91,63 @@ public class itemDAOimpl implements itemDAO {
             System.out.println(e.getMessage());
         }
     }
+
+    public List<String> getDistinctCategories() {
+        List<String> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT category FROM items";
+        try (Connection conn = DBconnection.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                categories.add(rs.getString("category"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return categories;
+    }
+
+    public void updateItemName(int itemId, String newName) {
+        String sql = "UPDATE items SET name = ? WHERE item_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, newName);
+            pst.setInt(2, itemId);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateItemCategory(int itemId, String newCategory) {
+        String sql = "UPDATE items SET category = ? WHERE item_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, newCategory);
+            pst.setInt(2, itemId);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateItemValue(int itemId, int newValue) {
+        String sql = "UPDATE items SET price = ? WHERE item_id = ?";
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, newValue);
+            pst.setInt(2, itemId);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

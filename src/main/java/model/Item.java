@@ -72,6 +72,18 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setValue(int value) {
+        this.Value = value;
+    }
+
+    public void setCategory(String category) {
+        this.Category = category;
+    }
+
     @Override
     public String toString() {
         return name + " (" + Category + ") - " + Value + " gold - Qty: " + quantity;

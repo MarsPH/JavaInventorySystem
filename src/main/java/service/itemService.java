@@ -44,10 +44,17 @@ public class itemService {
         }
     }
 
-    public void discardItem(String name)
-    {
-        Item item= new ItemBuilder().name(name).build();
-        itemDAO.dicardItem(item);
+    public void discardItem(int itemId, int quantity) {
+        shopStockDAO.removeItemFromStock(itemId, quantity);
+    }
+
+    public void discardItem(String name) {
+        // For console, discard all quantity
+        List<Item> stock = getShopStock();
+        Item item = stock.stream().filter(i -> i.getName().equals(name)).findFirst().orElse(null);
+        if (item != null) {
+            shopStockDAO.removeItemFromStock(item.getItemId(), item.getQuantity());
+        }
     }
 
     public void changePrice(String name, int Value){
@@ -112,5 +119,25 @@ public class itemService {
 
     public int getPlayerGold() {
         return playerInventoryDAO.getPlayerGold();
+    }
+
+    public List<String> getDistinctCategories() {
+        return itemDAO.getDistinctCategories();
+    }
+
+    public void updateItemName(int itemId, String newName) {
+        itemDAO.updateItemName(itemId, newName);
+    }
+
+    public void updateItemCategory(int itemId, String newCategory) {
+        itemDAO.updateItemCategory(itemId, newCategory);
+    }
+
+    public void updateItemValue(int itemId, int newValue) {
+        itemDAO.updateItemValue(itemId, newValue);
+    }
+
+    public void updateItemQuantity(int itemId, int newQuantity) {
+        shopStockDAO.updateItemQuantity(itemId, newQuantity);
     }
 }
