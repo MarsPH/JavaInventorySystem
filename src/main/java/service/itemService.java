@@ -5,6 +5,7 @@ import DAO.PlayerInventoryDAO;
 import DAO.ShopStockDAO;
 import com.google.protobuf.Value;
 import model.Item;
+import patterns.ItemBuilder;
 import java.util.List;
 
 public class itemService {
@@ -33,7 +34,7 @@ public class itemService {
     }
 
     public void addNewItem(String name,String category,int price, int quantity) {
-        Item item = new Item(name,category , price);
+        Item item = new ItemBuilder().name(name).category(category).value(price).build();
         itemDAO.saveItemToDatabase(item);
         // To get the id, we can query the item by name
         List<Item> allItems = itemDAO.getAllItems();
@@ -45,12 +46,12 @@ public class itemService {
 
     public void discardItem(String name)
     {
-        Item item= new Item(name);
+        Item item= new ItemBuilder().name(name).build();
         itemDAO.dicardItem(item);
     }
 
     public void changePrice(String name, int Value){
-        Item item = new Item(name,Value);
+        Item item = new ItemBuilder().name(name).value(Value).build();
         itemDAO.changePrice(item);
     }
 
