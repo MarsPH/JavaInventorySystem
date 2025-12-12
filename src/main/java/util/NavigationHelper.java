@@ -41,7 +41,7 @@ public final class NavigationHelper {
         return cachedMainMenu;
     }
 
-    // If you want to force reload (not cached), add this:
+
     public static void showMainMenuFresh(Node anyNodeInScene) {
         try {
             Stage stage = (Stage) anyNodeInScene.getScene().getWindow();

@@ -30,7 +30,7 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/PlayerMenu.fxml"));
             Parent root = loader.load();
 
-            // Pass your service to controller
+            // Pass  service to controller
             PlayerMenuController controller = loader.getController();
             controller.setItemService(new itemService());
 
@@ -48,7 +48,7 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShopKeeperMenu.fxml"));
             Parent root = loader.load();
 
-            // Pass your service to controller
+            // Pass service to controller
             ShopkeeperMenuController controller = loader.getController();
             controller.setService(new itemService());
 

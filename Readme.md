@@ -56,11 +56,12 @@ Schema is versioned via `schema_seed.sql`.
 
 ## Requirements
 
-* **Java 17+**
-* **MySQL 8+**
+* **Java 17+ or Java JDK Full with JavaFX**
+* **MySQL 8+ or MySql 8.4**
+* **Appache Mavel Installed and Added to Path**
 * **IntelliJ IDEA** (recommended)
 
-Add MySQL JDBC driver to your project (`mysql-connector-j.jar`).
+
 
 ---
 
@@ -69,28 +70,35 @@ Add MySQL JDBC driver to your project (`mysql-connector-j.jar`).
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/your-username/rpg-shop-inventory.git
-   cd rpg-shop-inventory
+   git clone https://github.com/MarsPH/JavaInventorySystem.git
+  
    ```
 
 2. **Create the database**
 
    ```bash
    mysql -u root -p < schema_seed.sql
+
+   or manually copy paste the schema_seed.sql and paste in MySql to create the database.
    ```
 
 3. **Configure DB credentials**
    Update `DBConnection.java` with your MySQL username and password:
+   or
+   Configure your MYSQL creditionls and port to as follow
+   port: 3306
+   passward: 1234
 
    ```java
    private static final String URL = "jdbc:mysql://localhost:3306/rpg_shop";
    private static final String USER = "root";
-   private static final String PASSWORD = "yourpassword";
+   private static final String PASSWORD = "1234";
    ```
 
-4. **Run the program**
+5. **Run the program**
 
    * Open in IntelliJ.
+   * build the project using "mvn clean install"
    * Run `Main.java`.
 
 ---
@@ -98,7 +106,7 @@ Add MySQL JDBC driver to your project (`mysql-connector-j.jar`).
 ## Usage
 
 * Launch program → Main Menu.
-* Choose **Player Menu** to view items or (later) buy/sell.
+* Choose **Player Menu** to view items or  buy/sell.
 * Choose **Shopkeeper Menu** to manage stock.
 * Data persists in MySQL database.
 
@@ -117,3 +125,6 @@ Add MySQL JDBC driver to your project (`mysql-connector-j.jar`).
 
 * MarsPh
 * AegonSnow
+
+IF YOU ENCOUNTER ANY BUGS OR ANY ISSUES IN SETUP , PLEASE RAISE A ISSUE 
+FOR MY COLLEGE COLLEGUES AND TEACHER , PLEASE LEAVE US A MIO.

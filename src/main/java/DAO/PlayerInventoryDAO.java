@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PlayerInventoryDAO {
 
-    private static final int PLAYER_ID = 1; // Assuming single player for now
+    private static final int PLAYER_ID = 1; //  single player for now
 
     public List<Item> getPlayerInventory() {
         List<Item> items = new ArrayList<>();
